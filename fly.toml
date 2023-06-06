@@ -1,0 +1,44 @@
+# fly.toml app configuration file generated for fullstack-pokedex-jslindgit-126 on 2023-06-06T17:06:27+03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "fullstack-pokedex-jslindgit-126"
+primary_region = "arn"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  PORT = "5000"
+
+[deploy]
+  release_command = "npm run build"
+
+[build]
+  [build.args]
+    NODE_VERSION = "16.20.0"
+
+[processes]
+  app = "node app.js"
+
+[experimental]
+  auto_rollback = true	
+
+[[services]]
+  internal_port = 5000
+  processes = ["app"]
+  protocol = "tcp"
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
