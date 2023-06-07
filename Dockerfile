@@ -4,6 +4,8 @@
 ARG NODE_VERSION=16.20.0
 FROM node:${NODE_VERSION}-slim as base
 
+RUN apt-get update; apt install -y curl
+
 LABEL fly_launch_runtime="Node.js"
 
 # Node.js app lives here
@@ -18,7 +20,7 @@ FROM base as build
 
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
-    apt-get install -y python pkg-config build-essential 
+	apt-get install -y python pkg-config build-essential 
 
 # Install node modules
 COPY --link package-lock.json package.json ./
