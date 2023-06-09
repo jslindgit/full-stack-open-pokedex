@@ -13,7 +13,7 @@ processes = []
   PORT = "5000"
 
 [deploy]
-  release_command = "npm run buildtempfail"
+  release_command = "npm run build"
 
 [build]
   [build.args]
