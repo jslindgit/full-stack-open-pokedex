@@ -41,7 +41,7 @@ jobs:
         if: success()
         with:
           severity: info
-          description: Commit ${{ github.event.commits[0].url }} by ${{ github.event.commits[0].commiter.username }} succeeded
+          description: Commit ${{ github.event.commits[0].url }} by ${{ github.event.commits[0].committer.username }} succeeded
           details: Test Succeeded!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
@@ -49,7 +49,7 @@ jobs:
         if: failure()
         with:
           severity: error
-          description: Commit ${{ github.event.commits[0].url }} by ${{ github.event.commits[0].commiter.username }} broke the build
+          description: Commit ${{ github.event.commits[0].url }} by ${{ github.event.commits[0].committer.username }} broke the build
           details: Test Failed!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
