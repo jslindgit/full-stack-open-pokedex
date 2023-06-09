@@ -41,6 +41,7 @@ jobs:
         if: success()
         with:
           severity: info
+          description: Commit ${{ github.event.commits[0].url }} by ${{ github.event.commits[0].commiter.username }} succeeded
           details: Test Succeeded!
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
