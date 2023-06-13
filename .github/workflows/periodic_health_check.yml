@@ -1,12 +1,8 @@
-name: Periodic health check
+name: Daily health check @ 16:45 UTC
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches: [master]
-    types: [opened, synchronize]
+  schedule:
+    - cron: '45 16 * * *'
 
 jobs:
   periodic_health_check:
